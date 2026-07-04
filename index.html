@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amber Willett · AI consulting for small teams</title>
+<meta name="description" content="I help small teams automate the boring stuff, so you can get back to the work you love. Honest AI consulting from someone who builds and ships real software.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%23f7f2e8%27/%3E%3Ccircle cx=%2750%27 cy=%2757%27 r=%2724%27 fill=%27%23dd5b38%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Hanken+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f2e8;
+    --ink:#22201a;
+    --ink-soft:#5f584b;
+    --rule:#e2d8c4;
+    --persimmon:#dd5b38;
+    --pine:#2f6f60;
+    --ochre:#dc9a32;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hanken Grotesque",system-ui,sans-serif;
+    font-size:clamp(1.05rem,0.6rem + 0.7vw,1.22rem);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:clamp(1.4rem,1rem + 3vw,3.5rem)}
+
+  /* load animation */
+  .rise{opacity:0;transform:translateY(16px);animation:rise .85s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.16s}.d3{animation-delay:.28s}
+  .d4{animation-delay:.4s}.d5{animation-delay:.52s}
+  @media(prefers-reduced-motion:reduce){.rise{animation:none;opacity:1;transform:none}}
+
+  a{color:inherit}
+  a:focus-visible{outline:2px solid var(--persimmon);outline-offset:3px;border-radius:4px}
+  .scribble{font-family:"Caveat",cursive;color:var(--persimmon);font-weight:600}
+
+  /* header */
+  header.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:clamp(2.5rem,2rem + 5vw,5rem)}
+  .mark{font-family:"Fraunces",serif;font-weight:600;font-size:1.15rem;text-decoration:none}
+  .mark span{color:var(--persimmon)}
+  nav.site{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
+  nav.site .navlink{font-size:.95rem;font-weight:600;text-decoration:none;border-bottom:2px solid var(--ochre);padding-bottom:1px}
+  nav.site .navlink:hover{color:var(--persimmon)}
+  .btn-sm{display:inline-block;background:var(--ink);color:var(--paper);font-weight:600;font-size:.92rem;text-decoration:none;padding:.55rem 1.05rem;border-radius:999px;transition:transform .18s ease,background .18s ease}
+  .btn-sm:hover{transform:translateY(-2px);background:var(--persimmon)}
+
+  /* hero */
+  .hero{margin-bottom:clamp(3rem,2rem + 6vw,6rem)}
+  h1{
+    font-family:"Fraunces",serif;font-weight:500;
+    font-size:clamp(2.5rem,1.1rem + 6vw,5.2rem);
+    line-height:1.02;letter-spacing:-0.02em;max-width:16ch;margin-bottom:1.1rem;
+  }
+  .hl{position:relative;white-space:nowrap}
+  .hl::after{
+    content:"";position:absolute;left:-.06em;right:-.06em;bottom:.04em;height:.42em;z-index:-1;
+    background:rgba(220,154,50,.42);transform:rotate(-1.2deg);border-radius:3px;
+  }
+  .lede{font-size:clamp(1.2rem,0.8rem + 0.9vw,1.5rem);max-width:46ch;color:var(--ink-soft);line-height:1.45;margin-bottom:2.2rem}
+  .cta-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+  .btn{
+    display:inline-block;background:var(--ink);color:var(--paper);
+    font-weight:600;font-size:1.02rem;text-decoration:none;
+    padding:.85rem 1.5rem;border-radius:999px;
+    transition:transform .18s ease,background .18s ease;
+  }
+  .btn:hover{transform:translateY(-2px);background:var(--persimmon)}
+  .skeptic{margin-top:-.2rem;font-size:.98rem;color:var(--ink-soft)}
+  .linknote{white-space:nowrap}
+  .cta-note{display:inline-flex;align-items:center;gap:.15rem;margin-left:.4rem;vertical-align:middle}
+  .cta-note svg{flex:none}
+  .cta-note .scribble{font-size:clamp(1.15rem,1rem + .6vw,1.35rem);transform:rotate(-3deg)}
+  @media(max-width:374px){
+    .skeptic{font-size:.92rem}
+    .cta-note svg{width:26px;height:20px}
+    .cta-note .scribble{font-size:1.02rem}
+  }
+  .skeptic a{font-weight:600;text-decoration:none;border-bottom:2px solid var(--persimmon);padding-bottom:1px}
+  .skeptic a:hover{color:var(--persimmon)}
+
+  /* generic section */
+  section{margin-block:clamp(3rem,2rem + 5vw,5.5rem)}
+  .eyebrow{font-family:"Caveat",cursive;font-size:1.7rem;color:var(--pine);font-weight:600;transform:rotate(-1.5deg);display:inline-block;margin-bottom:.4rem}
+  h2{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.8rem,1.1rem + 2.4vw,3rem);line-height:1.08;letter-spacing:-0.015em;max-width:20ch;margin-bottom:1.2rem}
+  .say{max-width:48ch;color:var(--ink-soft)}
+
+  /* ways to work */
+  .ways{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2rem}
+  @media(max-width:880px){.ways{grid-template-columns:1fr}}
+  .way{border:1.5px solid var(--ink);border-radius:18px;padding:1.6rem 1.5rem;background:var(--paper);display:flex;flex-direction:column}
+  .way .tagline{font-family:"Caveat",cursive;font-size:1.4rem;color:var(--pine);margin-bottom:.3rem}
+  .way h3{font-family:"Fraunces",serif;font-size:1.45rem;font-weight:600;margin-bottom:.7rem}
+  .way p{font-size:1rem;color:var(--ink-soft)}
+
+  /* recommendations */
+  .rec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem;margin-top:2rem}
+  .rec{background:#fffdf8;border:1.5px solid var(--rule);border-radius:18px;padding:1.6rem 1.5rem;display:flex;flex-direction:column;gap:1.1rem;position:relative}
+  .rec::before{content:"\201C";position:absolute;top:.1rem;left:1rem;font-family:"Fraunces",serif;font-size:3.4rem;line-height:1;color:var(--ochre);opacity:.55}
+  .rec blockquote{font-size:1.04rem;line-height:1.5;color:var(--ink);position:relative;z-index:1;margin-top:.7rem;border:none}
+  .rec.placeholder blockquote{color:var(--ink-soft);font-style:italic}
+  .rec figcaption{display:flex;align-items:center;gap:.8rem;margin-top:auto}
+  .rec .logo{flex:none;width:46px;height:46px;border-radius:10px;border:1.5px dashed var(--rule);display:grid;place-items:center;font-size:.62rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
+  .rec .who{display:flex;flex-direction:column;font-weight:600;color:var(--ink);line-height:1.2}
+  .rec .who small{font-weight:500;color:var(--ink-soft);font-size:.85rem;margin-top:.1rem}
+
+  /* why me */
+  .why{display:grid;grid-template-columns:1.1fr .9fr;gap:0 2.5rem;align-items:start}
+  .why-head{grid-column:1/-1}
+  @media(max-width:740px){.why{grid-template-columns:1fr;gap:0}}
+  .creds{list-style:none;display:flex;flex-direction:column;gap:.9rem;margin-top:.5rem}
+  .creds li{display:flex;gap:.8rem;align-items:flex-start;font-size:1.05rem}
+  .creds .tick{flex:none;width:24px;height:24px;border-radius:50%;background:var(--pine);color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:700;margin-top:.15rem}
+  .why-side{align-self:center}
+  .built-note{display:flex;align-items:center;gap:.5rem;font-family:"Caveat",cursive;font-weight:600;font-size:clamp(1.7rem,1.3rem + 1.4vw,2.3rem);line-height:1.15;color:var(--persimmon)}
+  .built-note svg{flex:none}
+  .built-note span{transform:rotate(-2deg);max-width:11ch}
+  @media(max-width:740px){
+    .built-note{margin-top:1.4rem}
+    .built-note svg{transform:rotate(90deg)}
+    .built-note span{max-width:none}
+  }
+
+  /* honest aside */
+  .aside{background:rgba(47,111,96,.08);border-left:4px solid var(--pine);border-radius:0 14px 14px 0;padding:1.4rem 1.6rem;max-width:52ch;font-size:1.1rem}
+  .aside b{font-weight:700}
+  .aside.alt{background:rgba(220,154,50,.12);border-left-color:var(--ochre);margin-top:1rem}
+
+  /* contact */
+  .contact{text-align:left;margin-top:clamp(3rem,2rem + 5vw,5.5rem)}
+  .contact h2{font-size:clamp(2rem,1.2rem + 3vw,3.4rem);max-width:18ch}
+  .contact .links{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;margin-top:1.6rem}
+  .mail{font-family:"Fraunces",serif;font-size:clamp(1.2rem,1rem + 1vw,1.6rem);text-decoration:none;border-bottom:2px solid var(--persimmon);padding-bottom:2px}
+  .mail:hover{color:var(--persimmon)}
+
+  footer{margin-top:clamp(3rem,2rem + 4vw,5rem);padding-top:1.6rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:var(--ink-soft);font-size:.9rem;align-items:center}
+  footer .scribble{font-size:1.1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top rise d1">
+    <a class="mark" href="index.html">willett<span>.</span>ai&nbsp;consulting</a>
+    <nav class="site">
+      <a class="navlink" href="tips.html">what AI is good at</a>
+      <a class="btn-sm" href="https://calendly.com/neuralappworks/automation">Book a call</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1 class="rise d2">Get back to <span class="hl">the work you love</span>.</h1>
+    <p class="lede rise d3">I help small teams automate the boring stuff.</p>
+    <div class="cta-row rise d4">
+      <a class="btn" href="mailto:amber@willett.ai">Tell me what's eating your time</a>
+    </div>
+  </div>
+
+  <!-- WAYS TO WORK -->
+  <section>
+    <span class="eyebrow">where to start</span>
+    <h2>Walk me through your day.</h2>
+    <p class="skeptic">Wondering what AI is actually good at?
+      <span class="linknote"><a href="tips.html">I wrote it up.</a><span class="cta-note"><svg width="52" height="36" viewBox="0 0 52 36" fill="none" aria-hidden="true">
+          <path d="M50 22 C42 4, 18 2, 6 14" stroke="var(--persimmon)" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M15.0 11.1 L6 14 L8.9 5.0" stroke="var(--persimmon)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg><span class="scribble">no jargon, promise</span></span></span>
+    </p>
+    <div class="ways">
+      <div class="way">
+        <div class="tagline">&ldquo;just point me the right way&rdquo;</div>
+        <h3>One good conversation</h3>
+        <p>We spend an hour going through how you work and where the time goes. Afterward I send a written list of what I'd automate, roughly ordered by feasibility and effort. A good place to start if you're not sure this is worth it yet.</p>
+      </div>
+      <div class="way">
+        <div class="tagline">&ldquo;build it with me&rdquo;</div>
+        <h3>Side-by-side sessions</h3>
+        <p>I sit with you or your team one-on-one and we work on your real tasks together. I set the tools up on your machines, and the skills and routines are yours to keep.</p>
+      </div>
+      <div class="way">
+        <div class="tagline">&ldquo;i need a custom tool&rdquo;</div>
+        <h3>Custom builds</h3>
+        <p>When the off-the-shelf stuff can't cut it, I build what's missing: automations, internal tools, dashboards, sites. Everything is documented and handed over, so you're not dependent on me to keep it running.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECEIPTS: hidden until the branded quotes arrive. To restore, delete this line and the "end receipts" line below, keeping everything between.
+  <section class="recs">
+    <span class="eyebrow">the receipts</span>
+    <h2>Here's what they said.</h2>
+    <div class="rec-grid">
+      <figure class="rec placeholder">
+        <blockquote>[A specific line about what changed: what came off their plate, what they got back, what surprised them.]</blockquote>
+        <figcaption>
+          <span class="logo">logo</span>
+          <span class="who">[Name]<small>[Business]</small></span>
+        </figcaption>
+      </figure>
+      <figure class="rec placeholder">
+        <blockquote>[What it was actually like to work together: clear, fast, no jargon? Say it here.]</blockquote>
+        <figcaption>
+          <span class="logo">logo</span>
+          <span class="who">[Name]<small>[Business]</small></span>
+        </figcaption>
+      </figure>
+      <figure class="rec placeholder">
+        <blockquote>[A result with a number, if there is one: hours saved a week, time to launch, fewer headaches.]</blockquote>
+        <figcaption>
+          <span class="logo">logo</span>
+          <span class="who">[Name]<small>[Business]</small></span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+  end receipts -->
+
+  <!-- WHY ME -->
+  <section class="why">
+    <div class="why-head">
+      <span class="eyebrow">who's talking</span>
+      <h2>I know the tech, and I've run the business.</h2>
+    </div>
+    <ul class="creds">
+        <li><span class="tick">&#10003;</span> I'm a PhD engineer who's been a data scientist, team lead, machine learning engineer, and a SaaS founder.</li>
+        <li><span class="tick">&#10003;</span> I've built, shipped and promoted two cross-platform apps with 30K+ users, as a team of one. I use AI every day.</li>
+        <li><span class="tick">&#10003;</span> I automate repetitive work so I have more time for my family, garden and art. What could you do?</li>
+    </ul>
+    <div class="why-side">
+      <p class="built-note"><svg width="52" height="36" viewBox="0 0 52 36" fill="none" aria-hidden="true">
+          <path d="M50 22 C42 4, 18 2, 6 14" stroke="var(--persimmon)" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M15.0 11.1 L6 14 L8.9 5.0" stroke="var(--persimmon)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg><span>I built this site with AI, too.</span></p>
+    </div>
+  </section>
+
+  <!-- HONEST ASIDE -->
+  <section>
+    <div class="aside">
+      <b>I won't sell you something you don't need.</b> I'm not affiliated with any AI company, and I don't take affiliate commissions.
+    </div>
+    <div class="aside alt">
+      <b>Pro bono, for accessibility.</b> AI tools can do a lot for individuals with disabilities. If that's you, my calls are free. Just mention it when you write.
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <span class="eyebrow">your move</span>
+    <h2>What could you hand off today?</h2>
+    <p class="say">You might be surprised.</p>
+    <div class="links">
+      <a class="mail" href="mailto:amber@willett.ai">amber@willett.ai</a>
+      <a class="btn" href="https://calendly.com/neuralappworks/automation">Book a call</a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="mark">willett<span>.</span>ai&nbsp;consulting</span>
+    <span>Amber Willett · Eugene, OR</span>
+    <span>Neural Appworks, LLC · <span class="scribble">created with AI</span></span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What AI is actually good at · Amber Willett</title>
+<meta name="description" content="What AI does well today, what takes more effort, and where to hold off. From an engineer who uses it every day in her own business.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%23f7f2e8%27/%3E%3Ccircle cx=%2750%27 cy=%2757%27 r=%2724%27 fill=%27%23dd5b38%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Hanken+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f2e8;
+    --ink:#22201a;
+    --ink-soft:#5f584b;
+    --rule:#e2d8c4;
+    --persimmon:#dd5b38;
+    --pine:#2f6f60;
+    --ochre:#dc9a32;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hanken Grotesque",system-ui,sans-serif;
+    font-size:clamp(1.05rem,0.6rem + 0.7vw,1.22rem);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:clamp(1.4rem,1rem + 3vw,3.5rem)}
+
+  .rise{opacity:0;transform:translateY(16px);animation:rise .85s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.16s}.d3{animation-delay:.28s}
+  @media(prefers-reduced-motion:reduce){.rise{animation:none;opacity:1;transform:none}}
+
+  a{color:inherit}
+  a:focus-visible{outline:2px solid var(--persimmon);outline-offset:3px;border-radius:4px}
+  .scribble{font-family:"Caveat",cursive;color:var(--persimmon);font-weight:600}
+
+  header.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:clamp(2rem,1.5rem + 4vw,4rem)}
+  .mark{font-family:"Fraunces",serif;font-weight:600;font-size:1.15rem;text-decoration:none}
+  .mark span{color:var(--persimmon)}
+  nav.site{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
+  nav.site .navlink{font-size:.95rem;font-weight:600;text-decoration:none;border-bottom:2px solid var(--ochre);padding-bottom:1px}
+  nav.site .navlink:hover{color:var(--persimmon)}
+  .btn-sm{display:inline-block;background:var(--ink);color:var(--paper);font-weight:600;font-size:.92rem;text-decoration:none;padding:.55rem 1.05rem;border-radius:999px;transition:transform .18s ease,background .18s ease}
+  .btn-sm:hover{transform:translateY(-2px);background:var(--persimmon)}
+
+  .eyebrow{font-family:"Caveat",cursive;font-size:1.7rem;color:var(--pine);font-weight:600;transform:rotate(-1.5deg);display:inline-block;margin-bottom:.4rem}
+  h1{
+    font-family:"Fraunces",serif;font-weight:500;
+    font-size:clamp(2.2rem,1.1rem + 4.5vw,4rem);
+    line-height:1.04;letter-spacing:-0.02em;max-width:18ch;margin-bottom:1.1rem;
+  }
+  .lede{font-size:clamp(1.15rem,0.8rem + 0.8vw,1.4rem);max-width:52ch;color:var(--ink-soft);line-height:1.5}
+
+  .cat{margin-top:clamp(2.8rem,2rem + 3vw,4rem);scroll-margin-top:90px}
+  .cat-head{display:flex;align-items:center;gap:.9rem;margin-bottom:.4rem}
+  .badge{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:1.4rem;font-weight:700;color:#fff}
+  .cat-good .badge{background:var(--pine)}
+  .cat-care .badge{background:var(--ochre)}
+  .cat-no .badge{background:var(--persimmon)}
+  h2{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.7rem,1.1rem + 2vw,2.5rem);line-height:1.08;letter-spacing:-0.015em}
+  .cat-say{color:var(--ink-soft);max-width:54ch;margin-top:.4rem}
+
+  .items{margin-top:1.6rem;display:flex;flex-direction:column;gap:1.15rem;max-width:62ch;list-style:none}
+  .items li{padding-left:1.4rem;position:relative;line-height:1.5;color:var(--ink-soft)}
+  .items li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%}
+  .cat-good .items li::before{background:var(--pine)}
+  .cat-care .items li::before{background:var(--ochre)}
+  .cat-no .items li::before{background:var(--persimmon)}
+  .items b{font-weight:700;color:var(--ink)}
+
+  .tipbox{margin-top:clamp(3rem,2rem + 3vw,4.5rem);background:#fffdf8;border:1.5px solid var(--rule);border-radius:18px;padding:1.8rem 1.7rem}
+  .tipbox h2{font-size:clamp(1.5rem,1.1rem + 1.4vw,2rem);margin-bottom:.4rem}
+  .tipbox .cat-say{margin-bottom:1.2rem}
+  .tipbox .items{max-width:none}
+  .tipbox .items li::before{background:var(--rule)}
+  .prompt{font-style:italic;color:var(--ink)}
+
+  .contact{margin-top:clamp(3rem,2rem + 4vw,5rem)}
+  .contact h2{font-size:clamp(1.8rem,1.2rem + 2.4vw,2.8rem);max-width:20ch;margin-bottom:.8rem}
+  .say{max-width:48ch;color:var(--ink-soft)}
+  .links{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;margin-top:1.5rem}
+  .mail{font-family:"Fraunces",serif;font-size:clamp(1.15rem,1rem + .8vw,1.5rem);text-decoration:none;border-bottom:2px solid var(--persimmon);padding-bottom:2px}
+  .mail:hover{color:var(--persimmon)}
+  .btn{display:inline-block;background:var(--ink);color:var(--paper);font-weight:600;font-size:1.02rem;text-decoration:none;padding:.85rem 1.5rem;border-radius:999px;transition:transform .18s ease,background .18s ease}
+  .btn:hover{transform:translateY(-2px);background:var(--persimmon)}
+
+  footer{margin-top:clamp(3rem,2rem + 4vw,5rem);padding-top:1.6rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:var(--ink-soft);font-size:.9rem;align-items:center}
+  footer .mark{font-size:1.05rem}
+  footer .scribble{font-size:1.1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top rise d1">
+    <a class="mark" href="index.html">willett<span>.</span>ai&nbsp;consulting</a>
+    <nav class="site">
+      <a class="navlink" href="index.html">home</a>
+      <a class="btn-sm" href="https://calendly.com/neuralappworks/automation">Book a call</a>
+    </nav>
+  </header>
+
+  <div class="rise d2">
+    <span class="eyebrow">the honest version</span>
+    <h1>What AI is actually good at.</h1>
+    <p class="lede">There's a lot of noise about what AI is supposed to do. This page is about what it does now: where it's reliably useful, where it takes more effort, and where I'd hold off. I use these tools every day in my own business, and I update this page as things change.</p>
+  </div>
+
+  <!-- DOES WELL -->
+  <section class="cat cat-good rise d3" id="good">
+    <div class="cat-head">
+      <div class="badge">&#10003;</div>
+      <h2>What AI does well</h2>
+    </div>
+    <p class="cat-say">This list is long on purpose. More of your week probably fits here than you'd guess.</p>
+    <ul class="items">
+      <li><b>Drafting emails, proposals, and first-pass copy.</b> It gets you from a blank page to a working draft in minutes, and it's good at matching a format or example you show it. You'll still want to edit before anything goes out.</li>
+      <li><b>Building simple tools, dashboards, and websites, <i>fast!</i></b> Internal calculators, trackers, simple sites. Work that used to mean hiring a contractor can now take an afternoon. This site is an example.</li>
+      <li><b>Watching inboxes &amp; dashboards and flagging what matters.</b> Once it's set up, it can read everything that comes in and flag the few things that need your attention.</li>
+      <li><b>Turning messy spreadsheets into clean data.</b> Inconsistent names, stray columns, five different date formats. This kind of cleanup is quick work for these tools.</li>
+      <li><b>Answering questions from your own documents.</b> Point it at your files and ask questions in plain English. Useful for policies, past projects, and finding things no one remembers filing.</li>
+      <li><b>Reformatting, editing and other clerical work.</b> Renaming, restructuring, converting between formats, proofreading against a style guide.</li>
+      <li><b>Bringing datasets and tools together to get things done faster.</b> It can connect your calendar, email, spreadsheets, and other apps, and move information between them so you're not copy-pasting.</li>
+      <li><b>Doing the above work on a schedule, or in response to some event.</b> Any of the above can run every Monday morning, or whenever an invoice lands, without anyone remembering to start it.</li>
+    </ul>
+  </section>
+
+  <!-- TRICKIER -->
+  <section class="cat cat-care" id="tricky">
+    <div class="cat-head">
+      <div class="badge">!</div>
+      <h2>Trickier, but doable</h2>
+    </div>
+    <p class="cat-say">Nothing here is off the table. It just takes more setup, oversight, or budget.</p>
+    <ul class="items">
+      <li><b>Anything that has to sound exactly like you.</b> Getting your voice right takes good examples, a lot of iteration, and a human read before anything goes out.</li>
+      <li><b>Ideation or management.</b> It can generate options and help organize the work, but judgment calls about people and direction should stay with a person.</li>
+      <li><b>Heavy video or data work ($$).</b> Doable, but the compute costs add up quickly. Worth estimating before you commit.</li>
+      <li><b>Building data-heavy infrastructure.</b> Possible, but it's real engineering work, and AI assistance doesn't change how carefully it needs to be done.</li>
+      <li><b>Anything without occasional human-performed sanity checks.</b> Automated systems drift over time, quietly. A periodic human review keeps them reliable.</li>
+    </ul>
+  </section>
+
+  <!-- DON'T BOTHER -->
+  <section class="cat cat-no" id="skip">
+    <div class="cat-head">
+      <div class="badge">&times;</div>
+      <h2>Don't bother (yet)</h2>
+    </div>
+    <p class="cat-say">This list gets shorter every year, but for now I'd hold off.</p>
+    <ul class="items">
+      <li><b>Work where a wrong answer is a legal problem (or a client-facing one).</b> If a mistake means a lawsuit or a lost client, a person should stay in charge. AI can help with the work, but it shouldn't make the call.</li>
+      <li><b>Most "fully autonomous" promises.</b> The demos look great, and the day-to-day reality disappoints. The systems that work today are the supervised ones.</li>
+      <li><b>Consumer robots.</b> Not yet. Ask me again in a few years.</li>
+    </ul>
+  </section>
+
+  <!-- DIY TIPS -->
+  <div class="tipbox">
+    <h2>Trying it yourself? A few tips.</h2>
+    <p class="cat-say">You don't need me to get started. These are the things I tell everyone first.</p>
+    <ul class="items">
+      <li><b>Iteration is essential.</b> Give detailed feedback, and tell it to simplify or expand in the specific ways you find valuable.</li>
+      <li><b>It can write its own instructions.</b> This is a significant time-saver, but proofread them to be sure they emphasize what you want emphasized. One prompt worth trying: <span class="prompt">"I want to do X. Interview me to build a skill I can use to do this repeatedly."</span></li>
+      <li><b>Audit your routines periodically.</b> Over weeks, automated routines can accumulate conflicting instructions, data, and memory, and performance degrades. Reviewing on a schedule helps.</li>
+      <li><b>Learning is still human work.</b> AI makes data collection and building fast, but reviewing what you know and deciding what to do next is not its strength.</li>
+    </ul>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <span class="eyebrow">your move</span>
+    <h2>Not sure where your task fits?</h2>
+    <p class="say">Send it to me. I'll give you an honest read and tell you what I'd try first.</p>
+    <div class="links">
+      <a class="mail" href="mailto:amber@willett.ai">amber@willett.ai</a>
+      <a class="btn" href="https://calendly.com/neuralappworks/automation">Book a call</a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="mark">willett<span>.</span>ai&nbsp;consulting</span>
+    <span>Amber Willett · Eugene, OR</span>
+    <span>Neural Appworks, LLC · <span class="scribble">created with AI</span></span>
+  </footer>
+
+</div>
+</body>
+</html>
